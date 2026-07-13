@@ -39,7 +39,7 @@ class _SplashPageState extends State<SplashPage> {
             SizedBox(
               width: 220,
               child: Text(
-                "emptyNotesMessage".tr(),
+                "emptyWordsMessage".tr(),
                 style: context.textTheme.headlineLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.white,
