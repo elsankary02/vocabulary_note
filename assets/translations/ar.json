@@ -21,5 +21,9 @@
   "sortingType": "نوع الترتيب",
   "ascending": "تصاعدي",
   "descending": "تنازلي",
-  "emptyWordsMessage": "أضف أول كلمة وابدأ في تنمية مفرداتك."
+  "emptyWordsMessage": "أضف أول كلمة وابدأ في تنمية مفرداتك.",
+  "Test": "إختبار",
+  "addNewWord": "إضافة كلمة جديدة",
+  "selectColor": "اختر لون الفئة",
+  "selectLanguage": "اختر لغة الفئة"
 }

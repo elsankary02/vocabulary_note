@@ -1,0 +1,33 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:note_app/core/theme/app_colors.dart';
+import 'package:note_app/core/utils/extensions/extension.dart';
+
+class CustomWordsBtn extends StatelessWidget {
+  final VoidCallback? onTap;
+  final String? title;
+  final Color? color;
+  const CustomWordsBtn({super.key, this.onTap, this.title, this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color ?? AppColors.note4,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Center(
+          child: Text(
+            title ?? "Test".tr(),
+            style: context.textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w700,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
+  }
+}

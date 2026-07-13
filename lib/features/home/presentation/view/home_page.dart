@@ -5,6 +5,8 @@ import 'package:note_app/core/theme/app_colors.dart';
 import 'package:note_app/core/utils/constants/app_string.dart';
 import 'package:note_app/core/utils/constants/app_svg.dart';
 import 'package:note_app/core/utils/extensions/extension.dart';
+import 'package:note_app/features/home/presentation/widget/alert_dialog_widget.dart';
+import 'package:note_app/features/home/presentation/widget/sliver_grid_view_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,23 +14,25 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(context),
-      floatingActionButton: _floatingActionBtn(),
-      body: const Center(child: Text('Home Page')),
+      floatingActionButton: _floatingActionBtn(context: context),
+      body: SafeArea(
+        top: false,
+        child: CustomScrollView(
+          slivers: [
+            _sliverAppBar(context: context),
+            SliverGridViewWidget(),
+          ],
+        ),
+      ),
     );
   }
 
-  FloatingActionButton _floatingActionBtn() {
-    return FloatingActionButton(
-      onPressed: () {},
-      shape: CircleBorder(),
-      backgroundColor: AppColors.primary,
-      child: const Icon(Icons.add),
-    );
-  }
+  Widget _sliverAppBar({required BuildContext context}) {
+    return SliverAppBar(
+      floating: true,
+      snap: true,
+      surfaceTintColor: Colors.transparent,
 
-  AppBar _appBar(BuildContext context) {
-    return AppBar(
       title: Text(
         'vocabularyNotes'.tr(),
         style: context.textTheme.titleMedium?.copyWith(
@@ -39,8 +43,8 @@ class HomePage extends StatelessWidget {
         Container(
           height: 40,
           width: 40,
-          margin: EdgeInsetsDirectional.only(end: 10),
-          decoration: BoxDecoration(
+          margin: const EdgeInsetsDirectional.only(end: 10),
+          decoration: const BoxDecoration(
             color: AppColors.primary,
             shape: BoxShape.circle,
           ),
@@ -50,6 +54,18 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+
+  FloatingActionButton _floatingActionBtn({required BuildContext context}) {
+    return FloatingActionButton(
+      onPressed: () => showDialog(
+        context: context,
+        builder: (context) => AlertDialogWidget(),
+      ),
+      shape: const CircleBorder(),
+      backgroundColor: AppColors.primary,
+      child: const Icon(Icons.add),
     );
   }
 }

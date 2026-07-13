@@ -21,5 +21,9 @@
   "sortingType": "Sorting Type",
   "ascending": "Ascending",
   "descending": "Descending",
-  "emptyWordsMessage": "Add your first word and grow your vocabulary."
+  "emptyWordsMessage": "Add your first word and grow your vocabulary.",
+  "Test": "Test",
+  "addNewWord": "Add New Word",
+  "selectColor": "Select Category Color",
+ "selectLanguage": "Select Category Language" 
 }
