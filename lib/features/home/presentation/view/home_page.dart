@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:note_app/core/theme/app_colors.dart';
-import 'package:note_app/core/utils/constants/app_string.dart';
-import 'package:note_app/core/utils/constants/app_svg.dart';
-import 'package:note_app/core/utils/extensions/extension.dart';
-import 'package:note_app/features/home/presentation/widget/alert_dialog_widget.dart';
-import 'package:note_app/features/home/presentation/widget/sliver_grid_view_widget.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/constants/app_string.dart';
+import '../../../../core/utils/constants/app_svg.dart';
+import '../../../../core/utils/extensions/extension.dart';
+import '../widget/alert_dialog_widget.dart';
+import '../widget/sliver_grid_view_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

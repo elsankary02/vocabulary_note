@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:note_app/core/components/default_text_form_feild.dart';
-import 'package:note_app/core/theme/app_colors.dart';
-import 'package:note_app/core/utils/constants/app_string.dart';
-import 'package:note_app/core/utils/extensions/extension.dart';
-import 'package:note_app/features/home/presentation/widget/color_picker_item.dart';
+import '../../../../core/components/default_text_form_feild.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/utils/constants/app_string.dart';
+import '../../../../core/utils/extensions/extension.dart';
+import 'color_picker_item.dart';
 
 class AlertDialogWidget extends StatefulWidget {
   const AlertDialogWidget({super.key});

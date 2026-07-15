@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:note_app/core/components/custom_words_btn.dart';
-import 'package:note_app/core/router/routes.dart';
-import 'package:note_app/core/utils/extensions/extension.dart';
+import '../../../../core/components/custom_words_btn.dart';
+import '../../../../core/router/routes.dart';
+import '../../../../core/utils/extensions/extension.dart';
 
 class SliverGridViewWidget extends StatelessWidget {
   const SliverGridViewWidget({super.key});
