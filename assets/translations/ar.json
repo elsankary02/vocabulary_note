@@ -24,7 +24,7 @@
   "emptyWordsMessage": "أضف أول كلمة وابدأ في تنمية مفرداتك.",
   "Test": "إختبار",
   "addNewWord": "إضافة كلمة جديدة",
-  "selectColor": "اختر لون الفئة",
-  "selectLanguage": "اختر لغة الفئة",
+  "selectColor": "اختر لون الفئة :",
+  "selectLanguage": "اختر لغة الفئة :",
   "enterWord": "أدخل كلمة جديدة"
 }

@@ -13,18 +13,16 @@ abstract class AppColors {
   static const Color fillBlack = Color(0xFF1f1f1f);
   static const Color fillWhite = Color(0xFFf3f5f8);
 
-  static const Color note1 = Color(0xFFE0E7F4); // Light Blue
-  static const Color note2 = Color(0xFFD1F9DD); // Light Green
-  static const Color note3 = Color(0xFFFCF4A5); // Light Yellow
-  static const Color note4 = Color(0xFFF5EBF2); // Light Pink
-
-  static const Color note5 = Color(0xFF4FB49C); // Teal
-  static const Color note6 = Color(0xFF749B93); // Sage Green
-  static const Color note7 = Color(0xFF386DF6); // Blue
-  static const Color note8 = Color(0xFF5F5AC9); // Indigo
-
-  static const Color note9 = Color(0xFF873AB6); // Purple
-  static const Color note10 = Color(0xFFE74AC5); // Pink
-  static const Color note11 = Color(0xFFEB6338); // Orange
-  static const Color note12 = Color(0xFFE6E762); // Yellow
+  static const Color note1 = Color(0xFF4FB49C); // Teal
+  static const Color note2 = Color(0xFF386DF6); // Royal Blue
+  static const Color note3 = Color(0xFF5F5AC9); // Indigo
+  static const Color note4 = Color(0xFF873AB6); // Purple
+  static const Color note5 = Color(0xFFE74AC5); // Pink
+  static const Color note6 = Color(0xFFEB6338); // Orange
+  static const Color note7 = Color(0xFFE6E762); // Yellow
+  static const Color note8 = Color(0xFF749B93); // Sage Green
+  static const Color note9 = Color(0xFF14B8A6); // Cyan Teal
+  static const Color note10 = Color(0xFF059669); // Emerald
+  static const Color note11 = Color(0xFF2563EB); // Strong Blue
+  static const Color note12 = Color(0xFFD946EF); // Magenta
 }

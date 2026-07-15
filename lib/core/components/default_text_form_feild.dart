@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../utils/extensions/extension.dart';
 
 import '../theme/app_colors.dart';
+import '../utils/extensions/extension.dart';
 
 class DefaultTextFormField extends StatefulWidget {
   final String? labelText;
@@ -20,7 +20,7 @@ class DefaultTextFormField extends StatefulWidget {
   final Function(String value)? onChanged, onFieldSubmitted;
   final String? Function(String? value)? validator;
   final Color? cursorColor, suffixIconColor, prefixIconColor, fillColor;
-  final Color enabledBorderColor, focusedBorderColor;
+  final Color? enabledBorderColor, focusedBorderColor;
   final bool isPassword;
   final BoxConstraints? prefixIconConstraints;
   const DefaultTextFormField({
@@ -44,15 +44,18 @@ class DefaultTextFormField extends StatefulWidget {
     this.filled,
     this.fillColor,
     this.autofocus = false,
-    this.enabledBorderColor = AppColors.white,
-    this.focusedBorderColor = AppColors.white,
+    this.enabledBorderColor,
+    this.focusedBorderColor,
     this.prefixText,
     this.suffixText,
     this.suffixStyle,
     this.prefixStyle,
     this.style,
     this.radius = 9,
-    this.contentPadding = const EdgeInsets.all(15),
+    this.contentPadding = const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 14,
+    ),
     this.hintText,
     this.hintStyle,
     this.prefixIconConstraints,
@@ -99,7 +102,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
             widget.hintStyle ??
             context.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w500,
-              color: context.theme.colorScheme.onSurface.withAlpha(50),
+              color: context.theme.colorScheme.onSurface.withAlpha(75),
             ),
         prefixStyle: widget.prefixStyle,
         prefixText: widget.prefixText,
@@ -128,14 +131,14 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
             widget.labelStyle ??
             context.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w500,
-              color: context.theme.colorScheme.onSurface.withAlpha(50),
+              color: context.theme.colorScheme.onSurface.withAlpha(75),
             ),
         enabledBorder: _outlineInputBorder(
-          color: widget.enabledBorderColor,
+          color: widget.enabledBorderColor ?? context.theme.colorScheme.surface,
           radius: widget.radius,
         ),
         focusedBorder: _outlineInputBorder(
-          color: widget.focusedBorderColor,
+          color: widget.focusedBorderColor ?? context.theme.colorScheme.surface,
 
           radius: widget.radius,
         ),

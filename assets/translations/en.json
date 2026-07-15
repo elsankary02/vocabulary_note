@@ -24,7 +24,7 @@
   "emptyWordsMessage": "Add your first word and grow your vocabulary.",
   "Test": "Test",
   "addNewWord": "Add New Word",
-  "selectColor": "Select Category Color",
- "selectLanguage": "Select Category Language",
- "enterWord": "Enter a new word"
+  "selectColor": "Category Color:",
+  "selectLanguage": "Category Language:",
+  "enterWord": "Enter a new word"
 }

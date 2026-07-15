@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
 import '../theme/app_colors.dart';
 import '../utils/extensions/extension.dart';
 
@@ -15,12 +16,14 @@ class CustomWordsBtn extends StatelessWidget {
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
-          color: color ?? AppColors.note4,
+          color: color ?? AppColors.note1,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Center(
           child: Text(
             title ?? "Test".tr(),
+            maxLines: 4,
+            overflow: .ellipsis,
             style: context.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w700,
               color: AppColors.black,
