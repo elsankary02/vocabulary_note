@@ -13,9 +13,9 @@ class AppThemes {
     colorScheme: const ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
-      surface: AppColors.white,
+      surface: AppColors.darkThemeTitle,
       onPrimary: AppColors.white,
-      onSurface: AppColors.black,
+      onSurface: AppColors.lightThemeTitle,
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
@@ -69,9 +69,9 @@ class AppThemes {
     colorScheme: const ColorScheme.dark(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
-      surface: AppColors.black,
+      surface: AppColors.lightThemeTitle,
       onPrimary: AppColors.white,
-      onSurface: AppColors.white,
+      onSurface: AppColors.darkThemeTitle,
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,

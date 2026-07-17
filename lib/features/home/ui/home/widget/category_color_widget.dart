@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/core/theme/app_colors.dart';
 
 import '../../../../../core/utils/extensions/extension.dart';
 
@@ -27,13 +28,13 @@ class CategoryColorWidget extends StatelessWidget {
             color: color,
             shape: BoxShape.circle,
             border: Border.all(
-              color: isSelected ? context.onSurface : Colors.transparent,
+              color: isSelected ? AppColors.white : Colors.transparent,
               width: 3,
             ),
           ),
           child: isSelected
               ? Center(
-                  child: Icon(Icons.check, color: context.onSurface, size: 24),
+                  child: Icon(Icons.check, color: AppColors.white, size: 24),
                 )
               : null,
         ),

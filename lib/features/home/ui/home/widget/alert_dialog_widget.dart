@@ -36,7 +36,7 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
       contentPadding: EdgeInsets.symmetric(horizontal: h20, vertical: h20),
       insetPadding: const EdgeInsets.symmetric(horizontal: 24),
       backgroundColor: _selectedColor,
-      title: BuildAlertTitleWidget(),
+      title: BuildAlertTitleWidget(title: "addNewWord".tr()),
       content: Form(
         key: _formKey,
         child: SizedBox(
@@ -57,7 +57,10 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
                 },
               ),
               s20,
-              BuildFormFieldWidget(textController: textController),
+              BuildFormFieldWidget(
+                textController: textController,
+                lable: "enterWord".tr(),
+              ),
             ],
           ),
         ),

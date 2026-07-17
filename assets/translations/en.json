@@ -1,23 +1,18 @@
 {
   "vocabularyNotes": "Vocabulary Notes",
   "allWords": "All Words",
-
   "wordDetails": "Word Details",
   "word": "Word",
   "newWord": "New Word",
-
   "similarWords": "Similar Words",
   "examples": "Examples",
-
   "language": "Language",
   "arabic": "Arabic",
   "english": "English",
   "all": "All",
-
   "sortedBy": "Sorted By",
   "time": "Time",
   "wordLength": "Word Length",
-
   "sortingType": "Sorting Type",
   "ascending": "Ascending",
   "descending": "Descending",
@@ -29,5 +24,11 @@
   "enterWord": "Enter a new word",
   "Done": "Done",
   "wordRequired": "Please enter a word",
-  "wordTooShort": "The word must contain at least 2 characters"
+  "wordTooShort": "The word must contain at least 2 characters",
+  "word_details": "Word Details",
+  "similar_words": "Similar Words",
+  "new_similar_word": "New Similar Word",
+  "new_example": "New Example",
+  "add_example": "Add Example",
+  "add_similar": "Add Similar"
 }

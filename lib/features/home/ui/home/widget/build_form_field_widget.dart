@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:note_app/core/components/default_text_form_feild.dart';
 
 class BuildFormFieldWidget extends StatelessWidget {
-  const BuildFormFieldWidget({super.key, required this.textController});
-
   final TextEditingController textController;
+  final String lable;
+  const BuildFormFieldWidget({
+    super.key,
+    required this.textController,
+    required this.lable,
+  });
 
   @override
   Widget build(BuildContext context) {
     return DefaultTextFormField(
-      labelText: "enterWord".tr(),
+      labelText: lable,
       controller: textController,
       validator: (value) {
         if (value == null || value.trim().isEmpty) {

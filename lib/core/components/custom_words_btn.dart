@@ -26,7 +26,7 @@ class CustomWordsBtn extends StatelessWidget {
             overflow: .ellipsis,
             style: context.textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.w700,
-              color: context.onSurface,
+              color: AppColors.white,
             ),
             textAlign: TextAlign.center,
           ),

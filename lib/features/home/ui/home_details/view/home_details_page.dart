@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:note_app/core/utils/extensions/extension.dart';
 import 'package:note_app/features/home/data/model/note_model.dart';
+import 'package:note_app/features/home/ui/home_details/widget/build_action_button_widget.dart';
+import 'package:note_app/features/home/ui/home_details/widget/build_default_alert_dialog_widget.dart';
+import 'package:note_app/features/home/ui/home_details/widget/build_list_tile_widget.dart';
 
 class HomeDetailsPage extends StatelessWidget {
   final TestNoteModel note;
@@ -10,9 +13,9 @@ class HomeDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final style = context.textTheme.titleLarge?.copyWith(
+    final style = context.textTheme.headlineSmall?.copyWith(
       color: note.color,
-      fontWeight: FontWeight.w700,
+      fontWeight: FontWeight.w900,
     );
     return Scaffold(
       appBar: _buildAppBarFunc(context: context, style: style),
@@ -23,8 +26,39 @@ class HomeDetailsPage extends StatelessWidget {
         ),
         children: [
           Text("word".tr(), style: style),
-          SizedBox(height: context.h * .02),
+          SizedBox(height: context.h * .015),
+
           BuildListTileWidget(note: note),
+          SizedBox(height: context.h * .05),
+
+          BuildActionButtonWidget(
+            title: "similarWords".tr(),
+            style: style,
+            note: note,
+            onTap: () => showDialog(
+              context: context,
+              builder: (context) => CustomAlertDialog(
+                note: note,
+                title: "add_similar".tr(),
+                lable: "new_similar_word".tr(),
+              ),
+            ),
+          ),
+          SizedBox(height: context.h * .05),
+
+          BuildActionButtonWidget(
+            title: "examples".tr(),
+            style: style,
+            note: note,
+            onTap: () => showDialog(
+              context: context,
+              builder: (context) => CustomAlertDialog(
+                note: note,
+                title: "add_example".tr(),
+                lable: "new_example".tr(),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -46,40 +80,6 @@ class HomeDetailsPage extends StatelessWidget {
           icon: Icon(Icons.delete, color: note.color),
         ),
       ],
-    );
-  }
-}
-
-class BuildListTileWidget extends StatelessWidget {
-  final TestNoteModel note;
-
-  const BuildListTileWidget({super.key, required this.note});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsetsDirectional.symmetric(
-        horizontal: 10,
-        vertical: 4,
-      ),
-      leading: Container(
-        height: context.h * 0.050,
-        width: context.h * 0.050,
-        decoration: BoxDecoration(
-          color: context.surface,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(Icons.menu_book_rounded, color: note.color),
-      ),
-      title: Text(
-        note.title,
-        style: context.textTheme.titleMedium?.copyWith(
-          fontWeight: FontWeight.w700,
-          color: context.onSurface,
-        ),
-      ),
-      shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      tileColor: note.color,
     );
   }
 }

@@ -1,23 +1,18 @@
 {
   "vocabularyNotes": "ملاحظات المفردات",
   "allWords": "جميع الكلمات",
-
   "wordDetails": "تفاصيل الكلمة",
   "word": "الكلمة",
   "newWord": "كلمة جديدة",
-
   "similarWords": "كلمات مشابهة",
   "examples": "أمثلة",
-
   "language": "اللغة",
   "arabic": "العربية",
   "english": "الإنجليزية",
   "all": "الكل",
-
   "sortedBy": "الترتيب حسب",
   "time": "الوقت",
   "wordLength": "طول الكلمة",
-
   "sortingType": "نوع الترتيب",
   "ascending": "تصاعدي",
   "descending": "تنازلي",
@@ -29,5 +24,10 @@
   "enterWord": "أدخل كلمة جديدة",
   "Done": "تم",
   "wordRequired": "من فضلك أدخل كلمة",
-  "wordTooShort": "يجب أن تحتوي الكلمة على حرفين على الأقل"
+  "wordTooShort": "يجب أن تحتوي الكلمة على حرفين على الأقل",
+  "word_details": "تفاصيل الكلمة",
+  "similar_words": "الكلمات الشبيهة",
+  "new_example": "مثال جديد",
+  "add_example": "إضافة مثال",
+  "add_similar": "إضافة كلمة شبيهة"
 }
