@@ -1,6 +1,11 @@
+import 'dart:developer';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:note_app/features/home/data/model/note_model.dart';
+import 'package:note_app/features/home/logic/test_note_cubit/test_note_cubit.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/utils/constants/app_string.dart';
@@ -14,15 +19,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: _buildFloatingActionBtn(context: context),
-      body: SafeArea(
-        top: false,
-        child: CustomScrollView(
-          slivers: [
-            _buildSliverAppBar(context: context),
-            SliverGridViewWidget(),
-          ],
+    return BlocProvider(
+      create: (context) => TestNoteCubit(),
+      child: BlocBuilder<TestNoteCubit, TestNoteState>(
+        builder: (context, state) => Scaffold(
+          floatingActionButton: _buildFloatingActionBtn(context: context),
+          appBar: _buildSliverAppBar(context: context),
+          body: SafeArea(top: false, child: SliverGridViewWidget()),
         ),
       ),
     );
@@ -32,22 +35,27 @@ class HomePage extends StatelessWidget {
     required BuildContext context,
   }) {
     return FloatingActionButton(
-      onPressed: () => showDialog(
-        context: context,
-        builder: (context) => AlertDialogWidget(),
-      ),
+      onPressed: () async {
+        final note = await showDialog<NoteModel>(
+          context: context,
+
+          builder: (context) => AlertDialogWidget(),
+        );
+        log("Note : $note");
+        if (!context.mounted) return;
+        if (note != null) {
+          context.read<TestNoteCubit>().add(note);
+        }
+      },
       shape: const CircleBorder(),
       backgroundColor: AppColors.primary,
-      child: const Icon(Icons.add),
+      child: const Icon(Icons.add, color: AppColors.white, size: 24),
     );
   }
 
-  Widget _buildSliverAppBar({required BuildContext context}) {
-    return SliverAppBar(
-      floating: true,
-      snap: true,
+  AppBar _buildSliverAppBar({required BuildContext context}) {
+    return AppBar(
       surfaceTintColor: Colors.transparent,
-
       title: Text(
         'vocabularyNotes'.tr(),
         style: context.textTheme.titleMedium?.copyWith(
@@ -55,11 +63,11 @@ class HomePage extends StatelessWidget {
         ),
       ),
       actionsPadding: EdgeInsetsDirectional.only(end: context.h * 0.02),
-      actions: [_buildAction(context)],
+      actions: [_buildFilterAction(context)],
     );
   }
 
-  SizedBox _buildAction(BuildContext context) {
+  SizedBox _buildFilterAction(BuildContext context) {
     return SizedBox(
       height: context.h * 0.050,
       width: context.h * 0.050,
@@ -67,10 +75,7 @@ class HomePage extends StatelessWidget {
         onPressed: () {},
         icon: SvgPicture.asset(
           AppSvg.filter,
-          colorFilter: ColorFilter.mode(
-            context.theme.colorScheme.onSurface,
-            BlendMode.srcIn,
-          ),
+          colorFilter: ColorFilter.mode(context.onSurface, BlendMode.srcIn),
         ),
       ),
     );

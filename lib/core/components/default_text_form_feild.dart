@@ -80,7 +80,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
           widget.style ??
           context.textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w500,
-            color: context.theme.colorScheme.onSurface,
+            color: context.onSurface,
           ),
       autovalidateMode: widget.autovalidateMode,
       autofocus: widget.autofocus,
@@ -102,7 +102,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
             widget.hintStyle ??
             context.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w500,
-              color: context.theme.colorScheme.onSurface.withAlpha(75),
+              color: context.onSurface.withAlpha(75),
             ),
         prefixStyle: widget.prefixStyle,
         prefixText: widget.prefixText,
@@ -131,7 +131,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
             widget.labelStyle ??
             context.textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w500,
-              color: context.theme.colorScheme.onSurface.withAlpha(75),
+              color: context.onSurface.withAlpha(75),
             ),
         enabledBorder: _outlineInputBorder(
           color: widget.enabledBorderColor ?? context.theme.colorScheme.surface,

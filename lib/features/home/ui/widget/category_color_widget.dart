@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/utils/extensions/extension.dart';
 
 class CategoryColorWidget extends StatelessWidget {
@@ -15,7 +16,6 @@ class CategoryColorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final surface = context.theme.colorScheme.surface;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 6.0),
       child: GestureDetector(
@@ -27,12 +27,14 @@ class CategoryColorWidget extends StatelessWidget {
             color: color,
             shape: BoxShape.circle,
             border: Border.all(
-              color: isSelected ? surface : Colors.transparent,
+              color: isSelected ? context.onSurface : Colors.transparent,
               width: 3,
             ),
           ),
           child: isSelected
-              ? Center(child: Icon(Icons.check, color: surface, size: 24))
+              ? Center(
+                  child: Icon(Icons.check, color: context.onSurface, size: 24),
+                )
               : null,
         ),
       ),

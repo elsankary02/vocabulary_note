@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'category_language_widget.dart';
+import 'package:go_router/go_router.dart';
+import 'package:note_app/core/components/default_primary_btn.dart';
+import 'package:note_app/features/home/data/model/note_model.dart';
 
 import '../../../../core/components/default_text_form_feild.dart';
 import '../../../../core/theme/app_colors.dart';
@@ -17,7 +19,12 @@ class AlertDialogWidget extends StatefulWidget {
 
 class _AlertDialogWidgetState extends State<AlertDialogWidget> {
   Color _selectedColor = _listColors[0];
-  String _selectedLang = _listLanguages[0];
+  final textController = TextEditingController();
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,34 +43,44 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildCategoryText(context: context, title: "selectLanguage".tr()),
-            s12,
-
-            _buildCategoryLanguage(),
-            s20,
-
             _buildCategoryText(context: context, title: "selectColor".tr()),
             s12,
 
             _buildCategoryColor(),
             s20,
-            DefaultTextFormField(labelText: "enterWord".tr()),
+            DefaultTextFormField(
+              labelText: "enterWord".tr(),
+              
+              controller: textController,
+            ),
           ],
         ),
       ),
+      actions: [
+        DefaultPrimaryBtn(
+          title: "Done",
+          onTap: () {
+            context.pop<NoteModel>(
+              NoteModel(
+                title: textController.text.trim(),
+                color: _selectedColor,
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 
   // Alert Title
   Text _buildAlertTitle(BuildContext context) {
-    final surface = context.theme.colorScheme.surface;
     return Text(
       "addNewWord".tr(),
       textAlign: TextAlign.center,
       style: context.textTheme.headlineLarge?.copyWith(
         fontFamily: AppString.sofiaPro,
         fontWeight: FontWeight.w700,
-        color: surface,
+        color: context.onSurface,
       ),
     );
   }
@@ -73,13 +90,12 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
     required BuildContext context,
     required String title,
   }) {
-    final surface = context.theme.colorScheme.surface;
     return Text(
       title,
       style: context.textTheme.titleSmall?.copyWith(
         fontWeight: FontWeight.w700,
         fontFamily: AppString.sofiaPro,
-        color: surface,
+        color: context.onSurface,
       ),
     );
   }
@@ -108,35 +124,9 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
       ),
     );
   }
-
-  // Category Language
-  Widget _buildCategoryLanguage() {
-    return SizedBox(
-      height: 50,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (_, _) => const SizedBox(width: 10),
-        itemCount: _listLanguages.length,
-        itemBuilder: (context, index) {
-          final language = _listLanguages[index];
-          final isSelectedLang = _selectedLang == language;
-          return CategoryLanguageWidget(
-            color: _selectedColor,
-            language: language,
-            isSelectedLang: isSelectedLang,
-            onTap: () {
-              setState(() {
-                _selectedLang = language;
-              });
-            },
-          );
-        },
-      ),
-    );
-  }
 }
 
-List<Color> _listColors = [
+final List<Color> _listColors = [
   AppColors.note1,
   AppColors.note2,
   AppColors.note3,
@@ -150,4 +140,3 @@ List<Color> _listColors = [
   AppColors.note11,
   AppColors.note12,
 ];
-List<String> _listLanguages = ["En", "Ar"];
