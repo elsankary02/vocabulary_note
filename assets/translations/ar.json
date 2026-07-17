@@ -26,5 +26,8 @@
   "addNewWord": "إضافة كلمة جديدة",
   "selectColor": "اختر لون الفئة :",
   "selectLanguage": "اختر لغة الفئة :",
-  "enterWord": "أدخل كلمة جديدة"
+  "enterWord": "أدخل كلمة جديدة",
+  "Done": "تم",
+  "wordRequired": "من فضلك أدخل كلمة",
+  "wordTooShort": "يجب أن تحتوي الكلمة على حرفين على الأقل"
 }

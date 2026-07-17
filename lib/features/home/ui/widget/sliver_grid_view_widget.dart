@@ -9,8 +9,8 @@ import '../../../../core/components/custom_words_btn.dart';
 import '../../../../core/router/routes.dart';
 import '../../../../core/utils/extensions/extension.dart';
 
-class SliverGridViewWidget extends StatelessWidget {
-  const SliverGridViewWidget({super.key});
+class GridViewWidget extends StatelessWidget {
+  const GridViewWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

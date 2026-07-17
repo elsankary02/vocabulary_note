@@ -160,7 +160,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
   }) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
-      borderSide: BorderSide(color: color),
+      borderSide: BorderSide(color: color, width: 2),
     );
   }
 }

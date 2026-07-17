@@ -1,14 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:note_app/core/components/default_primary_btn.dart';
-import 'package:note_app/features/home/data/model/note_model.dart';
+import 'package:note_app/features/home/ui/widget/build_alert_title_widget.dart';
+import 'package:note_app/features/home/ui/widget/build_category_color_widget.dart';
+import 'package:note_app/features/home/ui/widget/build_category_text_widget.dart';
+import 'package:note_app/features/home/ui/widget/build_done_btn_widget.dart';
+import 'package:note_app/features/home/ui/widget/build_form_field_widget.dart';
 
-import '../../../../core/components/default_text_form_feild.dart';
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/utils/constants/app_string.dart';
 import '../../../../core/utils/extensions/extension.dart';
-import 'category_color_widget.dart';
 
 class AlertDialogWidget extends StatefulWidget {
   const AlertDialogWidget({super.key});
@@ -19,6 +18,7 @@ class AlertDialogWidget extends StatefulWidget {
 
 class _AlertDialogWidgetState extends State<AlertDialogWidget> {
   Color _selectedColor = _listColors[0];
+  final _formKey = GlobalKey<FormState>();
   final textController = TextEditingController();
   @override
   void dispose() {
@@ -36,92 +36,40 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
       contentPadding: EdgeInsets.symmetric(horizontal: h20, vertical: h20),
       insetPadding: const EdgeInsets.symmetric(horizontal: 24),
       backgroundColor: _selectedColor,
-      title: _buildAlertTitle(context),
-      content: SizedBox(
-        width: context.w,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildCategoryText(context: context, title: "selectColor".tr()),
-            s12,
-
-            _buildCategoryColor(),
-            s20,
-            DefaultTextFormField(
-              labelText: "enterWord".tr(),
-              
-              controller: textController,
-            ),
-          ],
+      title: BuildAlertTitleWidget(),
+      content: Form(
+        key: _formKey,
+        child: SizedBox(
+          width: context.w,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              BuildCategoryTextWidget(title: "selectColor".tr()),
+              s12,
+              BuildCategoryColorWidget(
+                listColors: _listColors,
+                selectedColor: _selectedColor,
+                onTap: (color) {
+                  setState(() {
+                    _selectedColor = color;
+                  });
+                },
+              ),
+              s20,
+              BuildFormFieldWidget(textController: textController),
+            ],
+          ),
         ),
       ),
       actions: [
-        DefaultPrimaryBtn(
-          title: "Done",
-          onTap: () {
-            context.pop<NoteModel>(
-              NoteModel(
-                title: textController.text.trim(),
-                color: _selectedColor,
-              ),
-            );
-          },
+        // TODO: Refc This Local
+        BuildDoneBtnWidget(
+          formKey: _formKey,
+          textController: textController,
+          selectedColor: _selectedColor,
         ),
       ],
-    );
-  }
-
-  // Alert Title
-  Text _buildAlertTitle(BuildContext context) {
-    return Text(
-      "addNewWord".tr(),
-      textAlign: TextAlign.center,
-      style: context.textTheme.headlineLarge?.copyWith(
-        fontFamily: AppString.sofiaPro,
-        fontWeight: FontWeight.w700,
-        color: context.onSurface,
-      ),
-    );
-  }
-
-  // Category Text
-  Widget _buildCategoryText({
-    required BuildContext context,
-    required String title,
-  }) {
-    return Text(
-      title,
-      style: context.textTheme.titleSmall?.copyWith(
-        fontWeight: FontWeight.w700,
-        fontFamily: AppString.sofiaPro,
-        color: context.onSurface,
-      ),
-    );
-  }
-
-  // Category Color
-  Widget _buildCategoryColor() {
-    return SizedBox(
-      height: 50,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        separatorBuilder: (_, _) => const SizedBox(width: 7),
-        itemCount: _listColors.length,
-        itemBuilder: (context, index) {
-          final color = _listColors[index];
-          final isSelected = _selectedColor == color;
-          return CategoryColorWidget(
-            isSelected: isSelected,
-            color: color,
-            onTap: () {
-              setState(() {
-                _selectedColor = color;
-              });
-            },
-          );
-        },
-      ),
     );
   }
 }
