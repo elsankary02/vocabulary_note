@@ -1,0 +1,1 @@
+enum SortedBy { time, wordLength }
