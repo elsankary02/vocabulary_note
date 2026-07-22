@@ -8,4 +8,8 @@ final class WriteDataLoading extends WriteDataState {}
 
 final class WriteDataSuccess extends WriteDataState {}
 
-final class WriteDataFailuer extends WriteDataState {}
+final class WriteDataFailuer extends WriteDataState {
+  final String errMesssage;
+
+  WriteDataFailuer({required this.errMesssage});
+}

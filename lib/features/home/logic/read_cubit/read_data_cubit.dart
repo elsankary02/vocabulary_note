@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+
 import '../../../../core/enums/language_filter.dart';
 import '../../../../core/enums/sortedby.dart';
 import '../../../../core/enums/sorting_type.dart';
@@ -41,12 +40,9 @@ class ReadDataCubit extends Cubit<ReadDataState> {
     } catch (e) {
       emit(
         ReadDataFailuer(
-          errMesssage: "We have problem at get data ${e.toString()}",
+          errMesssage: "We have problem when we Get word, please try again",
         ),
       );
-    }
-    {
-      emit(ReadDataFailuer(errMesssage: e.toString()));
     }
   }
 
