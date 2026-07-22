@@ -1,8 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:note_app/core/utils/constants/app_string.dart';
-import 'package:note_app/features/home/data/model/word_model.dart';
+import '../../../../core/utils/constants/app_string.dart';
+import '../../data/model/word_model.dart';
 
 part 'write_data_state.dart';
 

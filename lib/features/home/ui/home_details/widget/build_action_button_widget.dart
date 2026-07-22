@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/core/utils/extensions/extension.dart';
+import '../../../../../core/utils/extensions/extension.dart';
 
 class BuildActionButtonWidget extends StatelessWidget {
   final TextStyle? style;
