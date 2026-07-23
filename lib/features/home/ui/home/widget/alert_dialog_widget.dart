@@ -2,7 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:note_app/core/functions/show_snakbar_message.dart';
 import 'package:note_app/core/utils/constants/app_string.dart';
+import 'package:note_app/features/home/logic/read_cubit/read_data_cubit.dart';
 import 'package:note_app/features/home/logic/write_cubit/write_data_cubit.dart';
 import 'package:note_app/features/home/ui/home/widget/done_btn_widget.dart';
 
@@ -34,11 +36,21 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
     final s20 = const SizedBox(height: 20);
     final h20 = context.h * 0.02;
 
-    return BlocBuilder<WriteDataCubit, WriteDataState>(
+    return BlocConsumer<WriteDataCubit, WriteDataState>(
+      listener: (context, state) {
+        if (state is WriteDataFailuer) {
+          showSnakBarMessage(
+            isError: true,
+            message: state.errMesssage,
+            context,
+          );
+          return;
+        }
+      },
       builder: (context, state) {
         final colorCode = context.read<WriteDataCubit>().colorCode;
         return AlertDialog(
-          backgroundColor: colorCode,
+          backgroundColor: Color(colorCode),
           contentPadding: EdgeInsets.symmetric(horizontal: h20, vertical: h20),
           insetPadding: const EdgeInsets.symmetric(horizontal: 24),
           title: TitleDialogWidget(title: "addNewWord".tr()),
@@ -69,9 +81,11 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
             DoneBtnWidget(
               onTap: () {
                 if (!_formKey.currentState!.validate()) return;
+                context.read<WriteDataCubit>().addWord();
+                context.read<ReadDataCubit>().getWords();
                 context.pop();
               },
-              colorCode: colorCode,
+              colorCode: Color(colorCode),
             ),
           ],
         );

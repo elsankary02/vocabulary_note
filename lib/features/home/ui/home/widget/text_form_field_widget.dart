@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/features/home/logic/write_cubit/write_data_cubit.dart';
 
 import '../../../../../core/components/default_text_form_feild.dart';
 
@@ -18,6 +20,8 @@ class TextFormFieldWidget extends StatelessWidget {
     return DefaultTextFormField(
       labelText: lable,
       controller: textController,
+      onChanged: (value) =>
+          context.read<WriteDataCubit>().updateText(text: value),
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
           return validatorOne;

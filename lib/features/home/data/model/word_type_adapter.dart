@@ -8,7 +8,7 @@ class WordTypeAdapter extends TypeAdapter<WordModel> {
     return WordModel(
       indexAtDatabase: reader.readInt(),
       text: reader.readString(),
-      colorCode: reader.read(),
+      colorCode: reader.readInt(),
       isArabic: reader.readBool(),
       arSimilarWords: reader.readStringList(),
       enSimilarWords: reader.readStringList(),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:note_app/core/theme/app_colors.dart';
 
 import '../../../../core/utils/constants/app_string.dart';
 import '../../data/model/word_model.dart';
@@ -14,7 +13,7 @@ class WriteDataCubit extends Cubit<WriteDataState> {
   final Box box = Hive.box(AppString.wordsBox);
   String text = "";
   bool isArabic = true;
-  Color colorCode = AppColors.note1;
+  int colorCode = 0xFF4FB49C;
 
   void updateText({required String text}) {
     this.text = text;
@@ -26,7 +25,7 @@ class WriteDataCubit extends Cubit<WriteDataState> {
     emit(WriteDataSuccess());
   }
 
-  void updateColorCode({required Color colorCode}) {
+  void updateColorCode({required int colorCode}) {
     this.colorCode = colorCode;
     emit(WriteDataSuccess());
   }
@@ -35,7 +34,6 @@ class WriteDataCubit extends Cubit<WriteDataState> {
     _tryCatch(
       callMethod: () {
         List<WordModel> words = _getWordsFromDataBase();
-
         words[indexAtDatabase] = words[indexAtDatabase].addSimilarWord(
           text,
           isArabic,
@@ -113,7 +111,6 @@ class WriteDataCubit extends Cubit<WriteDataState> {
       },
       errMesssage: "We have problem when we Add word, please try again",
     );
-    emit(WriteDataLoading());
   }
 
   void deleteWord(int indexAtDatabase) {

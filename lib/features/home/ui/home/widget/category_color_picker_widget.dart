@@ -5,7 +5,7 @@ import 'package:note_app/core/utils/extensions/extension.dart';
 import 'package:note_app/features/home/logic/write_cubit/write_data_cubit.dart';
 
 class CategoryColorPickerWidget extends StatefulWidget {
-  final Color colorCode;
+  final int colorCode;
   const CategoryColorPickerWidget({super.key, required this.colorCode});
 
   @override
@@ -19,7 +19,7 @@ class _CategoryColorPickerWidgetState extends State<CategoryColorPickerWidget> {
   @override
   void initState() {
     super.initState();
-    _selectedColor = widget.colorCode;
+    _selectedColor = Color(widget.colorCode);
   }
 
   @override
@@ -31,7 +31,8 @@ class _CategoryColorPickerWidgetState extends State<CategoryColorPickerWidget> {
         separatorBuilder: (_, _) => const SizedBox(width: 7),
         itemCount: _categoryColors.length,
         itemBuilder: (context, index) {
-          final color = _categoryColors[index];
+          final colorValue = _categoryColors[index];
+          final color = Color(colorValue);
           final isSelected = _selectedColor == color;
 
           return CategoryColorItem(
@@ -40,7 +41,9 @@ class _CategoryColorPickerWidgetState extends State<CategoryColorPickerWidget> {
             onTap: () {
               setState(() => _selectedColor = color);
 
-              context.read<WriteDataCubit>().updateColorCode(colorCode: color);
+              context.read<WriteDataCubit>().updateColorCode(
+                colorCode: colorValue,
+              );
             },
           );
         },
@@ -90,23 +93,23 @@ class CategoryColorItem extends StatelessWidget {
   }
 }
 
-final List<Color> _categoryColors = [
-  AppColors.note1,
-  AppColors.note2,
-  AppColors.note3,
-  AppColors.note4,
-  AppColors.note5,
-  AppColors.note6,
-  AppColors.note7,
-  AppColors.note8,
-  AppColors.note9,
-  AppColors.note10,
-  AppColors.note11,
-  AppColors.note12,
-  AppColors.note13,
-  AppColors.note14,
-  AppColors.note15,
-  AppColors.note16,
-  AppColors.note17,
-  AppColors.note18,
+final List<int> _categoryColors = [
+  0xFF4FB49C,
+  0xFF5B8DEF,
+  0xFF6C63D9,
+  0xFF8B5CF6,
+  0xFFEC6FA9,
+  0xFFF08A5D,
+  0xFFD4A017,
+  0xFF6FAF8F,
+  0xFF2CB1BC,
+  0xFF2F9E73,
+  0xFF4C6EF5,
+  0xFFB76DDC,
+  0xFF9C6644,
+  0xFF577590,
+  0xFF43AA8B,
+  0xFFF28482,
+  0xFF90BE6D,
+  0xFF7B6CF6,
 ];
