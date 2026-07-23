@@ -1,4 +1,5 @@
 import 'package:hive_flutter/adapters.dart';
+
 import 'word_model.dart';
 
 class WordTypeAdapter extends TypeAdapter<WordModel> {
@@ -7,7 +8,7 @@ class WordTypeAdapter extends TypeAdapter<WordModel> {
     return WordModel(
       indexAtDatabase: reader.readInt(),
       text: reader.readString(),
-      colorCode: reader.readInt(),
+      colorCode: reader.read(),
       isArabic: reader.readBool(),
       arSimilarWords: reader.readStringList(),
       enSimilarWords: reader.readStringList(),
@@ -23,7 +24,7 @@ class WordTypeAdapter extends TypeAdapter<WordModel> {
   void write(BinaryWriter writer, WordModel obj) {
     writer.writeInt(obj.indexAtDatabase);
     writer.writeString(obj.text);
-    writer.writeInt(obj.colorCode);
+    writer.write(obj.colorCode);
     writer.writeBool(obj.isArabic);
     writer.writeStringList(obj.arSimilarWords);
     writer.writeStringList(obj.enSimilarWords);

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../../core/utils/extensions/extension.dart';
-import '../widget/build_action_button_widget.dart';
-import '../widget/build_default_alert_dialog_widget.dart';
-import '../widget/build_list_tile_widget.dart';
+import '../widget/action_button_widget.dart';
+import '../widget/custom_alert_dialog_widget.dart';
+import '../widget/list_tile_widget.dart';
 
 class HomeDetailsPage extends StatefulWidget {
   const HomeDetailsPage({super.key});
@@ -31,10 +31,10 @@ class _HomeDetailsPageState extends State<HomeDetailsPage> {
           Text("word".tr(), style: style),
           SizedBox(height: context.h * .015),
 
-          BuildListTileWidget(),
+          ListTileWidget(),
           SizedBox(height: context.h * .05),
 
-          BuildActionButtonWidget(
+          ActionButtonWidget(
             title: "similarWords".tr(),
             style: style,
 
@@ -43,16 +43,14 @@ class _HomeDetailsPageState extends State<HomeDetailsPage> {
               builder: (context) => CustomAlertDialog(
                 title: "add_similar".tr(),
                 lable: "new_similar_word".tr(),
-                doneOnTap: () {
-                  // TODO: similar OnTap
-                },
+                doneOnTap: () {},
               ),
             ),
           ),
           SizedBox(height: context.h * .015),
           SizedBox(height: context.h * .05),
 
-          BuildActionButtonWidget(
+          ActionButtonWidget(
             title: "examples".tr(),
             style: style,
 
@@ -61,9 +59,7 @@ class _HomeDetailsPageState extends State<HomeDetailsPage> {
               builder: (context) => CustomAlertDialog(
                 title: "add_example".tr(),
                 lable: "new_example".tr(),
-                doneOnTap: () {
-                  // TODO: example OnTap
-                },
+                doneOnTap: () {},
               ),
             ),
           ),
@@ -79,15 +75,8 @@ class _HomeDetailsPageState extends State<HomeDetailsPage> {
         onPressed: () => context.pop(),
         icon: Icon(Icons.arrow_back_ios_new_outlined),
       ),
-     
-      actions: [
-        IconButton(
-          onPressed: () {
-            //TODO: Delete
-          },
-          icon: Icon(Icons.delete),
-        ),
-      ],
+
+      actions: [IconButton(onPressed: () {}, icon: Icon(Icons.delete))],
     );
   }
 }

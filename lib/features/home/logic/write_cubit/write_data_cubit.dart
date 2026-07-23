@@ -1,6 +1,8 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:note_app/core/theme/app_colors.dart';
+
 import '../../../../core/utils/constants/app_string.dart';
 import '../../data/model/word_model.dart';
 
@@ -9,21 +11,24 @@ part 'write_data_state.dart';
 class WriteDataCubit extends Cubit<WriteDataState> {
   WriteDataCubit() : super(WriteDataInitial());
 
-  final Box box = Hive.box(AppString.wordsList);
+  final Box box = Hive.box(AppString.wordsBox);
   String text = "";
   bool isArabic = true;
-  int colorCode = 0xFF485BA7;
+  Color colorCode = AppColors.note1;
 
   void updateText({required String text}) {
     this.text = text;
+    emit(WriteDataSuccess());
   }
 
   void updateIsArabic({required bool isArabic}) {
     this.isArabic = isArabic;
+    emit(WriteDataSuccess());
   }
 
-  void updateColorCode({required int colorCode}) {
+  void updateColorCode({required Color colorCode}) {
     this.colorCode = colorCode;
+    emit(WriteDataSuccess());
   }
 
   void addSimilarWord(int indexAtDatabase) {

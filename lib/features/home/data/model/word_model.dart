@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
 class WordModel {
   final int indexAtDatabase;
   final String text;
-  final int colorCode;
+  final Color colorCode;
   final bool isArabic;
   final List<String> arSimilarWords;
   final List<String> enSimilarWords;
@@ -21,7 +23,7 @@ class WordModel {
   WordModel copyWith({
     int? indexAtDatabase,
     String? text,
-    int? colorCode,
+    Color? colorCode,
     bool? isArabic,
     List<String>? arSimilarWords,
     List<String>? enSimilarWords,

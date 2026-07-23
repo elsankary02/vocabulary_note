@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+
 import '../../../../../core/utils/extensions/extension.dart';
 
-class BuildActionButtonWidget extends StatelessWidget {
+class ActionButtonWidget extends StatelessWidget {
   final TextStyle? style;
   final String title;
   final VoidCallback? onTap;
 
-  const BuildActionButtonWidget({
+  const ActionButtonWidget({
     super.key,
     required this.onTap,
     this.style,

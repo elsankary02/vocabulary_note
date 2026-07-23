@@ -13,7 +13,7 @@ void main() async {
 
   await Hive.initFlutter();
   Hive.registerAdapter(WordTypeAdapter());
-  Hive.openBox(AppString.wordsBox);
+  await Hive.openBox(AppString.wordsBox);
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('en'), Locale('ar')],

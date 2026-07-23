@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/extensions/extension.dart';
 
-class BuildListTileWidget extends StatelessWidget {
+class ListTileWidget extends StatelessWidget {
   final bool? isBookIcon;
   final String? languageCode;
   final Widget? trailing;
   final VoidCallback? onPressed;
-  const BuildListTileWidget({
+  const ListTileWidget({
     super.key,
     this.isBookIcon = true,
     this.trailing,

@@ -1,14 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:note_app/core/utils/constants/app_string.dart';
+import 'package:note_app/features/home/logic/write_cubit/write_data_cubit.dart';
+import 'package:note_app/features/home/ui/home/widget/done_btn_widget.dart';
 
 import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/utils/extensions/extension.dart';
-import 'build_alert_title_widget.dart';
-import 'build_category_color_widget.dart';
 import 'build_category_text_widget.dart';
-import 'build_done_btn_widget.dart';
-import 'build_form_field_widget.dart';
+import 'category_color_picker_widget.dart';
+import 'text_form_field_widget.dart';
 
 class AlertDialogWidget extends StatefulWidget {
   const AlertDialogWidget({super.key});
@@ -18,7 +20,6 @@ class AlertDialogWidget extends StatefulWidget {
 }
 
 class _AlertDialogWidgetState extends State<AlertDialogWidget> {
-  Color _selectedColor = _listColors[0];
   final _formKey = GlobalKey<FormState>();
   final textController = TextEditingController();
   @override
@@ -33,65 +34,66 @@ class _AlertDialogWidgetState extends State<AlertDialogWidget> {
     final s20 = const SizedBox(height: 20);
     final h20 = context.h * 0.02;
 
-    return AlertDialog(
-      contentPadding: EdgeInsets.symmetric(horizontal: h20, vertical: h20),
-      insetPadding: const EdgeInsets.symmetric(horizontal: 24),
-      backgroundColor: _selectedColor,
-      title: BuildAlertTitleWidget(title: "addNewWord".tr()),
-      content: Form(
-        key: _formKey,
-        child: SizedBox(
-          width: context.w,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              BuildCategoryTextWidget(title: "selectColor".tr()),
-              s12,
-              BuildCategoryColorWidget(
-                listColors: _listColors,
-                selectedColor: _selectedColor,
-                onTap: (color) {
-                  setState(() {
-                    _selectedColor = color;
-                  });
-                },
+    return BlocBuilder<WriteDataCubit, WriteDataState>(
+      builder: (context, state) {
+        final colorCode = context.read<WriteDataCubit>().colorCode;
+        return AlertDialog(
+          backgroundColor: colorCode,
+          contentPadding: EdgeInsets.symmetric(horizontal: h20, vertical: h20),
+          insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+          title: TitleDialogWidget(title: "addNewWord".tr()),
+          content: Form(
+            key: _formKey,
+            child: SizedBox(
+              width: context.w,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  s20,
+                  BuildCategoryTextWidget(title: "selectColor".tr()),
+                  s12,
+                  CategoryColorPickerWidget(colorCode: colorCode),
+                  s20,
+                  TextFormFieldWidget(
+                    textController: textController,
+                    lable: "enterWord".tr(),
+                    validatorOne: "wordRequired".tr(),
+                    validatorTwo: "wordTooShort".tr(),
+                  ),
+                ],
               ),
-              s20,
-              BuildFormFieldWidget(
-                textController: textController,
-                lable: "enterWord".tr(),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
-      actions: [
-        // TODO: Refc This Local
-        BuildDoneBtnWidget(
-          onTap: () {
-            if (!_formKey.currentState!.validate()) return;
-            context.pop();
-          },
-          textController: textController,
-          selectedColor: _selectedColor,
-        ),
-      ],
+          actions: [
+            DoneBtnWidget(
+              onTap: () {
+                if (!_formKey.currentState!.validate()) return;
+                context.pop();
+              },
+              colorCode: colorCode,
+            ),
+          ],
+        );
+      },
     );
   }
 }
 
-final List<Color> _listColors = [
-  AppColors.note1,
-  AppColors.note2,
-  AppColors.note3,
-  AppColors.note4,
-  AppColors.note5,
-  AppColors.note6,
-  AppColors.note7,
-  AppColors.note8,
-  AppColors.note9,
-  AppColors.note10,
-  AppColors.note11,
-  AppColors.note12,
-];
+class TitleDialogWidget extends StatelessWidget {
+  final String title;
+  const TitleDialogWidget({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      textAlign: TextAlign.center,
+      style: context.textTheme.headlineLarge?.copyWith(
+        fontFamily: AppString.sofiaPro,
+        fontWeight: FontWeight.w700,
+        color: AppColors.white,
+      ),
+    );
+  }
+}

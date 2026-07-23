@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/core/theme/app_colors.dart';
+import 'package:note_app/features/home/ui/home/widget/alert_dialog_widget.dart';
 
-import '../../../../../core/theme/app_colors.dart';
-import 'alert_dialog_widget.dart';
-
-class BuildFloatingActionButtonWidget extends StatelessWidget {
-  const BuildFloatingActionButtonWidget({super.key});
+class FloatingActionButtonWidget extends StatelessWidget {
+  const FloatingActionButtonWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

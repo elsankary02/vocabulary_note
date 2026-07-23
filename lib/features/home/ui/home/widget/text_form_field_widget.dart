@@ -1,14 +1,16 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
 import '../../../../../core/components/default_text_form_feild.dart';
 
-class BuildFormFieldWidget extends StatelessWidget {
+class TextFormFieldWidget extends StatelessWidget {
   final TextEditingController textController;
-  final String lable;
-  const BuildFormFieldWidget({
+  final String lable, validatorOne, validatorTwo;
+  const TextFormFieldWidget({
     super.key,
     required this.textController,
     required this.lable,
+    required this.validatorOne,
+    required this.validatorTwo,
   });
 
   @override
@@ -18,11 +20,11 @@ class BuildFormFieldWidget extends StatelessWidget {
       controller: textController,
       validator: (value) {
         if (value == null || value.trim().isEmpty) {
-          return "wordRequired".tr();
+          return validatorOne;
         }
 
         if (value.trim().length < 2) {
-          return "wordTooShort".tr();
+          return validatorTwo;
         }
 
         return null;
